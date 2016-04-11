@@ -1,0 +1,50 @@
+Karim the AI delivers psychological support to Syrian refugees
+
+More than 1m Syrians have fled to Lebanon since the conflict began with as many as one-fifth suffering from mental health disorders, says WHO
+
+More than 1 million Syrians have fled to Lebanon since the start of the conflict and as many as one-fifth of them may be suffering from mental health disorders, according to the World Health Organisation.
+
+But Lebanon’s mental health services are mostly private and the needs of refugees – who may have lost loved ones, their home, livelihood and community – are mostly going unmet.
+
+Hoping to support the efforts of overworked psychologists in the region, the Silicon Valley startup X2AI has created an artificially intelligent chatbot called Karim that can have personalised text message conversations in Arabic to help people with their emotional problems. As the user interacts with Karim, the system uses natural language processing to analyse the person’s emotional state and returns appropriate comments, questions and recommendations.
+
+ How much should we fear the rise of artificial intelligence?
+Tom Chatfield
+ Read more
+Eugene Bann, the co-founder and CTO of X2AI, says: “There are barely any mental-health services in refugee camps. People have depression, anxiety, a sense of hopelessness and fear of the unknown.”
+
+To get Karim into the hands of refugees and aid workers, X2AI has teamed up with an non-governmental organisation called Field Innovation Team (FIT), which delivers tech-enabled disaster relief.
+
+“We work with a lot of refugees and it’s a challenge for us to be able to help if people aren’t ready to receive,” says FIT’s Desi Matel-Anderson. “Psychosocial services create a bedrock in order to create learning outcomes and do something that helps. Exponential technology like X2AI’s will let us reach people we wouldn’t normally get to help.”
+
+Karim is the little brother of X2AI’s flagship full-service product, Tess. Some of the more advanced features that are being trialled with Tess include a function that detects when a user is really in distress – for example talking about suicide or self harm – and then hands over to a human psychologist for a counselling session. A prototype of Tess has been developed to help deal with post-traumatic stress disorder (PTSD) in war veterans.
+
+
+The future of work: 'Computers are good at the jobs we find hard, and bad at the jobs we find easy'
+ Read more
+For now, Karim is being used much more cautiously, positioned as a friend rather than a therapist.
+
+“Of course we have all these psychological therapies we can give and ultimately that’s our objective, but to begin with we need to break down those barriers,” explains Bann. “We let them talk about superficial things first – what movies they like, for example. Then slowly, and according to how they respond and how their emotions are interpreted by us, Karim might ask them slightly more personal questions.”
+
+Ahmad, 33, is a Syrian refugee who fled his home in Damascus to live in West Bekaa in eastern Lebanon. He teaches at a school for refugee children and was given the opportunity to trial Karim. “I felt like I was talking to real person,” he says. “A lot of Syrian refugees have trauma and maybe this can help them overcome that.”
+
+Advertisement
+
+However, he points out that there is a stigma around psychotherapy, saying people feel shame about seeking out psychologists. As a result he thinks people might feel more comfortable knowing they are talking to a “robot” than to a human.
+
+There is a long history of using chatbots to help deliver psychotherapy. In the 1960s computer scientist Joseph Weizenbaum created Eliza, a simulation of a psychotherapist who would reply to statements with questions. In the 1990s Richard Wallace developed a similar but better chatbot called Alice, who won the Loebner Prize, making “her” the most humanlike AI in the world at the time.
+
+“Eliza and Alice are extremely basic. They receive an input and use a limited set of rules based on keyword spotting and some basic statistics to determine how to respond,” says Bann. Tess, on the other hand, takes into consideration all prior patient and AI responses when considering what to say next, and also takes the level of conversation up through different stages – to carry out modules of psychotherapy – when the patient is ready.
+
+
+Two offshore asylum seekers placed under suicide or self-harm watch every three days
+ Read more
+X2AI’s technology is based on academic research Bann conducted at the University of Bath, where he tried to come up with overarching computational models of emotion. Bann moved to San Francisco “on a whim” and lived in a hacker house where he met with Michiel Rauws, who was trying to set up a business in psychological aid.
+
+The two realised that Bann’s algorithms could be extremely useful for Rauws’ objectives, and set up the business together. The company got into the Singularity University accelerator programme and honed their business model, before partnering with Field Innovation Team for the Karim pilot.
+
+Not everyone shares X2AI’s bullish Silicon Valley approach to the problem. David Luxton is an associate professor at the Department of Psychiatry and Behavioural Sciences at the University of Washington School of Medicine, and is building a similar tool to Tess. He agrees that these sorts of tools can fill a gap where there’s a lack of mental health provision, but he raises ethical concerns.
+
+“If someone indicates they are suicidal to a licensed human psychologist then we are obliged to do certain things by law. How is the system going to handle that? The other aspect is that you are simulating a human and the end user might get confused and attached in a way that could actually be harmful for the patient.”
+
+“If it’s just providing coaching it may be OK.”
