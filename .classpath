@@ -2,5 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/adail/Downloads/lucene-6.0.0/analysis/common/lucene-analyzers-common-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/adail/Downloads/lucene-6.0.0/core/lucene-core-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/adail/Downloads/lucene-6.0.0/demo/lucene-demo-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/adail/Downloads/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/adail/Downloads/lucene-6.0.0/queries/lucene-queries-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/adail/Downloads/lucene-6.0.0/expressions/lucene-expressions-6.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
