@@ -14,6 +14,7 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -23,25 +24,28 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
 public class LuceneSearch {
-	public static void main(String[] args)
+	
+	StandardAnalyzer analyzer;
+	Directory index;
+	
+	public LuceneSearch(String path)
 	{
 		BufferedReader br = null;
 		
 		try
 		{
 			
-			File folder = new File("documents");
+			File folder = new File(path);
             File[] listOfFiles = folder.listFiles();
-            
-            PrintWriter writer = new PrintWriter("documents/output_search.txt", "UTF-8");
+           
             String sCurrentLine;
             
 			//	Specify the analyzer for tokenizing text.
 		   //	The same analyzer should be used for indexing and searching
-			StandardAnalyzer analyzer = new StandardAnalyzer();
+			analyzer = new StandardAnalyzer();
 			
 			//	Code to create the index
-			Directory index = new RAMDirectory();
+			index = new RAMDirectory();
 			
 			IndexWriterConfig config = new IndexWriterConfig(analyzer);
 			IndexWriter w = new IndexWriter(index, config);
@@ -57,35 +61,7 @@ public class LuceneSearch {
             		content = "";
             	}
             }
-            writer.close();
 			w.close();
-			
-			//	Text to search
-			String querystr = args.length > 0 ? args[0] : "movies in iraq";
-			
-			//	The "title" arg specifies the default field to use when no field is explicitly specified in the query
-			//Query q = new QueryParser("title", analyzer).parse(querystr);
-			Query q = new QueryParser("content", analyzer).parse(querystr);
-			
-			// Searching code
-			int hitsPerPage = 300;
-		   IndexReader reader = DirectoryReader.open(index);
-		   IndexSearcher searcher = new IndexSearcher(reader);
-		   TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage);
-		   searcher.search(q, collector);
-		   ScoreDoc[] hits = collector.topDocs().scoreDocs;
-		   
-		   //	Code to display the results of search
-		   System.out.println("Found " + hits.length + " hits.");
-		   for(int i=0;i<hits.length;++i) 
-		   {
-		     int docId = hits[i].doc;
-		     Document d = searcher.doc(docId);
-		     System.out.println((i + 1) + ". " + d.get("title"));
-		   }
-		   
-		   // reader can only be closed when there is no need to access the documents any more
-		   reader.close();
 		}
 		catch(Exception e)
 		{
@@ -99,5 +75,46 @@ public class LuceneSearch {
 		 doc.add(new TextField("title", title, Field.Store.YES));
 		 doc.add(new TextField("content", content, Field.Store.YES));
 		 w.addDocument(doc);
+	}
+	
+	public String[][] query(String queryStr) throws ParseException, IOException{
+		
+//		Text to search
+		String querystr = "movies in iraq";
+		
+//		Specify the analyzer for tokenizing text.
+//	The same analyzer should be used for indexing and searching
+		StandardAnalyzer analyzer = new StandardAnalyzer();
+
+		//	The "title" arg specifies the default field to use when no field is explicitly specified in the query
+		//Query q = new QueryParser("title", analyzer).parse(querystr);
+		Query q = new QueryParser("content", analyzer).parse(querystr);
+
+		// Searching code
+		int hitsPerPage = 300;
+		IndexReader reader = DirectoryReader.open(index);
+		IndexSearcher searcher = new IndexSearcher(reader);
+		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage);
+		searcher.search(q, collector);
+		ScoreDoc[] hits = collector.topDocs().scoreDocs;
+
+		//	Code to display the results of search
+		System.out.println("Found " + hits.length + " hits.");
+		
+		String[][] result = new String[hits.length][2];
+		
+		for(int i=0;i<hits.length;++i) 
+		{
+			int docId = hits[i].doc;
+			Document d = searcher.doc(docId);
+			int index = i+1;
+			result[i][0] = ""+index;
+			result[i][1] = d.get("title");
+		}
+
+		// reader can only be closed when there is no need to access the documents any more
+		reader.close();
+
+		return result;		
 	}
 }
