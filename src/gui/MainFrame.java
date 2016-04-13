@@ -1,6 +1,9 @@
 package gui;
 
 import facade.Facade;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -36,7 +39,7 @@ public class MainFrame extends JFrame {
 		//garantir q o processo seja finalizado ao fechar janela
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		this.setBounds(0, 0, 500, 300);
+		this.setBounds(0, 0, 700, 500);
 
 		JTextField txtf_serch = new JTextField();
 
@@ -66,11 +69,14 @@ public class MainFrame extends JFrame {
 
 		tbl_result.setModel(dtm);
 
-		this.setLayout(new GridLayout(2,1));
-
-		GridLayout topGrid = new GridLayout(1,2);
-		topGrid.setHgap(25);
-		JPanel panel = new JPanel(topGrid);
+		GridLayout fullGrid = new GridLayout(2,1);
+		this.setLayout(new FlowLayout(2));
+		
+		txtf_serch.setPreferredSize(new Dimension(300, 20));
+		btn_serch.setPreferredSize(new Dimension(100, 20));
+		
+//		JPanel panel = new JPanel(topGrid);
+		JPanel panel = new JPanel();
 		panel.add(txtf_serch);
 		panel.add(btn_serch);
 		
@@ -196,3 +202,4 @@ public class MainFrame extends JFrame {
 	}
 
 }
+
