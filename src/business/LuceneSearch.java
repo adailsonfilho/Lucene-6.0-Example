@@ -79,8 +79,6 @@ public class LuceneSearch {
 	
 	public String[][] query(String queryStr) throws ParseException, IOException{
 		
-//		Text to search
-		String querystr = "movies in iraq";
 		
 //		Specify the analyzer for tokenizing text.
 //	The same analyzer should be used for indexing and searching
@@ -88,7 +86,7 @@ public class LuceneSearch {
 
 		//	The "title" arg specifies the default field to use when no field is explicitly specified in the query
 		//Query q = new QueryParser("title", analyzer).parse(querystr);
-		Query q = new QueryParser("content", analyzer).parse(querystr);
+		Query q = new QueryParser("content", analyzer).parse(queryStr);
 
 		// Searching code
 		int hitsPerPage = 300;
