@@ -2,10 +2,17 @@ package business;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.util.Collection;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.core.KeywordTokenizer;
+import org.apache.lucene.analysis.hunspell.Dictionary;
+import org.apache.lucene.analysis.hunspell.HunspellStemFilter;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -21,11 +28,21 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.IOContext;
+import org.apache.lucene.store.IndexInput;
+import org.apache.lucene.store.IndexOutput;
+import org.apache.lucene.store.Lock;
 import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.IOUtils;
+import org.apache.lucene.store.Directory;
 
 public class LuceneSearch {
 	
 	StandardAnalyzer analyzer;
+	Analyzer stm_analyzer;
+	
+	final boolean stem = true;
+	
 	Directory index;
 	
 	public LuceneSearch(String path)
@@ -33,8 +50,7 @@ public class LuceneSearch {
 		BufferedReader br = null;
 		
 		try
-		{
-			
+		{			
 			File folder = new File(path);
             File[] listOfFiles = folder.listFiles();
            
@@ -47,7 +63,7 @@ public class LuceneSearch {
 			//	Code to create the index
 			index = new RAMDirectory();
 			
-			IndexWriterConfig config = new IndexWriterConfig(analyzer);
+			IndexWriterConfig config = new IndexWriterConfig(stem?stm_analyzer:analyzer);
 			IndexWriter w = new IndexWriter(index, config);
 			String content = "";
 			
@@ -62,6 +78,26 @@ public class LuceneSearch {
             	}
             }
 			w.close();
+			
+			//tenta criar um analyzer q usa stemming, mas sem sucesso ate agora
+			final Dictionary d;
+			  InputStream affixStream= new FileInputStream(new File("dics/en_US.aff"));
+			  InputStream dictStream= new FileInputStream(new File("dics/en_US.dic"));
+//			  InputStream dictStream= LuceneSearch.class.getResourceAsStream("dics/en_US.dic");
+			  try {
+				d = new Dictionary(index,"en_US",affixStream,dictStream);
+//			    d=new Dictionary(affixStream,Collections.singletonList(dictStream),true);
+			  }
+			  finally {
+			    IOUtils.closeWhileHandlingException(affixStream,dictStream);
+			  }
+			  stm_analyzer = new Analyzer(){
+			    @Override protected TokenStreamComponents createComponents(String fieldName){
+			      Tokenizer tokenizer=new KeywordTokenizer();
+			      return new TokenStreamComponents(tokenizer,new HunspellStemFilter(tokenizer,d));
+			    }
+			  }
+			;
 		}
 		catch(Exception e)
 		{
@@ -82,11 +118,10 @@ public class LuceneSearch {
 		
 //		Specify the analyzer for tokenizing text.
 //	The same analyzer should be used for indexing and searching
-		StandardAnalyzer analyzer = new StandardAnalyzer();
 
 		//	The "title" arg specifies the default field to use when no field is explicitly specified in the query
 		//Query q = new QueryParser("title", analyzer).parse(querystr);
-		Query q = new QueryParser("content", analyzer).parse(queryStr);
+		Query q = new QueryParser("content", stem?stm_analyzer:analyzer).parse(queryStr);
 
 		// Searching code
 		int hitsPerPage = 300;

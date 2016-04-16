@@ -2,12 +2,15 @@ package gui;
 
 import facade.Facade;
 
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -24,6 +27,8 @@ import javax.swing.table.TableModel;
 import javax.swing.text.LayoutQueue;
 
 import org.apache.lucene.queryparser.classic.ParseException;
+
+import com.sun.glass.events.MouseEvent;
 
 public class MainFrame extends JFrame {
 
@@ -55,7 +60,6 @@ public class MainFrame extends JFrame {
 			}
 		});
 
-
 		//		String[] columnNames = {"Índice", "Nome do arquivo"};
 		//		String[][] data = {
 		//				{"1","TALTAL"},
@@ -68,6 +72,51 @@ public class MainFrame extends JFrame {
 		dtm = new DefaultTableModel();
 
 		tbl_result.setModel(dtm);
+		tbl_result.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(java.awt.event.MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(java.awt.event.MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				int row = tbl_result.rowAtPoint(e.getPoint());
+			    int col = tbl_result.columnAtPoint(e.getPoint());
+			    
+			    System.out.println(row+" "+col);
+			    
+			    String filename = tbl_result.getValueAt(row, col).toString();
+			    
+			    try {
+					Desktop.getDesktop().open(new File("documents\\"+filename));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		GridLayout fullGrid = new GridLayout(2,1);
 		this.setLayout(new FlowLayout(2));
@@ -87,6 +136,7 @@ public class MainFrame extends JFrame {
 		scrollPanel.setViewportView(tbl_result);
 		this.add(scrollPanel);
 	}
+
 
 	public static void main(String[] args) {
 
