@@ -74,30 +74,7 @@ public class MainFrame extends JFrame {
 		tbl_result.setModel(dtm);
 		tbl_result.addMouseListener(new MouseListener() {
 			
-			@Override
-			public void mouseReleased(java.awt.event.MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(java.awt.event.MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(java.awt.event.MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(java.awt.event.MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -116,10 +93,34 @@ public class MainFrame extends JFrame {
 					e1.printStackTrace();
 				}
 			}
+
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(java.awt.event.MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(java.awt.event.MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 
 		GridLayout fullGrid = new GridLayout(2,1);
-		this.setLayout(new FlowLayout(2));
+		this.setLayout(new FlowLayout(3));
 		
 		txtf_serch.setPreferredSize(new Dimension(300, 20));
 		btn_serch.setPreferredSize(new Dimension(100, 20));

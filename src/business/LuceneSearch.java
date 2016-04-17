@@ -37,67 +37,45 @@ import org.apache.lucene.util.IOUtils;
 import org.apache.lucene.store.Directory;
 
 public class LuceneSearch {
-	
+
 	StandardAnalyzer analyzer;
-	Analyzer stm_analyzer;
-	
-	final boolean stem = true;
-	
+
 	Directory index;
-	
+
 	public LuceneSearch(String path)
 	{
 		BufferedReader br = null;
-		
+
 		try
 		{			
 			File folder = new File(path);
-            File[] listOfFiles = folder.listFiles();
-           
-            String sCurrentLine;
-            
+			File[] listOfFiles = folder.listFiles();
+
+			String sCurrentLine;
+
 			//	Specify the analyzer for tokenizing text.
-		   //	The same analyzer should be used for indexing and searching
+			//	The same analyzer should be used for indexing and searching
 			analyzer = new StandardAnalyzer();
-			
+
 			//	Code to create the index
 			index = new RAMDirectory();
-			
-			IndexWriterConfig config = new IndexWriterConfig(stem?stm_analyzer:analyzer);
+
+			IndexWriterConfig config = new IndexWriterConfig(analyzer);
 			IndexWriter w = new IndexWriter(index, config);
 			String content = "";
-			
+
 			for (File file : listOfFiles) {
-            	if (file.isFile()) {
-            		br = new BufferedReader(new FileReader(file.getPath()));
-            		while ((sCurrentLine = br.readLine()) != null) {            			
-                        content = content + sCurrentLine;
-                    }
-            		addDoc(w, file.getName(), content);
-            		content = "";
-            	}
-            }
+				if (file.isFile()) {
+					br = new BufferedReader(new FileReader(file.getPath()));
+					while ((sCurrentLine = br.readLine()) != null) {            			
+						content = content + sCurrentLine;
+					}
+					addDoc(w, file.getName(), content);
+					content = "";
+				}
+			}
 			w.close();
-			
-			//tenta criar um analyzer q usa stemming, mas sem sucesso ate agora
-			final Dictionary d;
-			  InputStream affixStream= new FileInputStream(new File("dics/en_US.aff"));
-			  InputStream dictStream= new FileInputStream(new File("dics/en_US.dic"));
-//			  InputStream dictStream= LuceneSearch.class.getResourceAsStream("dics/en_US.dic");
-			  try {
-				d = new Dictionary(index,"en_US",affixStream,dictStream);
-//			    d=new Dictionary(affixStream,Collections.singletonList(dictStream),true);
-			  }
-			  finally {
-			    IOUtils.closeWhileHandlingException(affixStream,dictStream);
-			  }
-			  stm_analyzer = new Analyzer(){
-			    @Override protected TokenStreamComponents createComponents(String fieldName){
-			      Tokenizer tokenizer=new KeywordTokenizer();
-			      return new TokenStreamComponents(tokenizer,new HunspellStemFilter(tokenizer,d));
-			    }
-			  }
-			;
+
 		}
 		catch(Exception e)
 		{
@@ -106,22 +84,22 @@ public class LuceneSearch {
 	}
 	private static void addDoc(IndexWriter w, String title, String content) throws IOException 
 	{
-		 Document doc = new Document();
-		 // A text field will be tokenized
-		 doc.add(new TextField("title", title, Field.Store.YES));
-		 doc.add(new TextField("content", content, Field.Store.YES));
-		 w.addDocument(doc);
+		Document doc = new Document();
+		// A text field will be tokenized
+		doc.add(new TextField("title", title, Field.Store.YES));
+		doc.add(new TextField("content", content, Field.Store.YES));
+		w.addDocument(doc);
 	}
-	
+
 	public String[][] query(String queryStr) throws ParseException, IOException{
-		
-		
-//		Specify the analyzer for tokenizing text.
-//	The same analyzer should be used for indexing and searching
+
+
+		//		Specify the analyzer for tokenizing text.
+		//	The same analyzer should be used for indexing and searching
 
 		//	The "title" arg specifies the default field to use when no field is explicitly specified in the query
 		//Query q = new QueryParser("title", analyzer).parse(querystr);
-		Query q = new QueryParser("content", stem?stm_analyzer:analyzer).parse(queryStr);
+		Query q = new QueryParser("content",analyzer).parse(queryStr);
 
 		// Searching code
 		int hitsPerPage = 300;
@@ -133,9 +111,9 @@ public class LuceneSearch {
 
 		//	Code to display the results of search
 		System.out.println("Found " + hits.length + " hits.");
-		
+
 		String[][] result = new String[hits.length][2];
-		
+
 		for(int i=0;i<hits.length;++i) 
 		{
 			int docId = hits[i].doc;

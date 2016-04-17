@@ -2,19 +2,17 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Heloá/Downloads/lucene-6.0.0/analysis/common/lucene-analyzers-common-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/Heloá/Downloads/lucene-6.0.0/docs/analyzers-common/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Heloá/Downloads/lucene-6.0.0/core/lucene-core-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/Heloá/Downloads/lucene-6.0.0/docs/core/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Heloá/Downloads/lucene-6.0.0/demo/lucene-demo-6.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Heloá/Downloads/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Heloá/Downloads/lucene-6.0.0/queries/lucene-queries-6.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Heloá/Downloads/lucene-6.0.0/expressions/lucene-expressions-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/jetty-io-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/jetty-util-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-common-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-icu-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-kuromoji-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-morfologik-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-phonetic-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-smartcn-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-analyzers-uima-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-core-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-expressions-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cliente/Downloads/lucene-quero/lucene-queryparser-6.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
