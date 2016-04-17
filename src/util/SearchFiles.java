@@ -47,7 +47,7 @@ public class SearchFiles {
 	Analyzer analyzer;
 	int hitsPerPage = 300;
 
-	private SearchFiles(String indexPath) throws Exception {
+	public SearchFiles(String indexPath) throws Exception {
 		this.indexPath = indexPath;
 		analyzer = new StemAnalyzer();;
 

@@ -4,21 +4,18 @@ import java.io.IOException;
 
 import org.apache.lucene.queryparser.classic.ParseException;
 
-import business.LuceneWrapped;
-
 public class Test1 {
 	
 	public static void main(String[] args) {
 		
-		LuceneWrapped lw = new LuceneWrapped("documents");
+		String indexPath = "index";
+		String docsPath = "documents";
+		
+		IndexFiles lw = new IndexFiles(indexPath,docsPath);
 		try {
-			String[][] result = lw.query("movies in iraq",true, false);
-			
-			System.out.println(result.length+" hit");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			SearchFiles sf = new SearchFiles(indexPath);
+			sf.query("Movies in Iraq", "contents");
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
