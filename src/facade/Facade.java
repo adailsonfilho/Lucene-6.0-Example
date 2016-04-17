@@ -11,7 +11,7 @@ public class Facade {
 	LuceneSearch ls;
 	
 	public Facade(){
-		ls = new LuceneSearch("documents");
+		ls = new LuceneSearch();
 	}
 	
 	public String[][] query(String str) throws ParseException, IOException{

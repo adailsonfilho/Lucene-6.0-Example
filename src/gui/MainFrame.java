@@ -87,7 +87,7 @@ public class MainFrame extends JFrame {
 			    String filename = tbl_result.getValueAt(row, col).toString();
 			    
 			    try {
-					Desktop.getDesktop().open(new File("documents\\"+filename));
+					Desktop.getDesktop().open(new File(filename));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -223,7 +223,7 @@ public class MainFrame extends JFrame {
 			return data[row][col];
 		}
 
-		@SuppressWarnings({ "unchecked", "rawtypes" })
+		
 		public Class getColumnClass(int c) {
 			return getValueAt(0, c).getClass();
 		}
