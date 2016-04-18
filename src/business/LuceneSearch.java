@@ -36,6 +36,7 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.IOUtils;
 
 import util.IndexFiles;
+import util.MatrizDeRelevancia;
 import util.SearchFiles;
 
 public class LuceneSearch {
@@ -60,6 +61,13 @@ public class LuceneSearch {
 	
 	public String[][] query(String queryString) throws ParseException, IOException{
 
-		return sf.query(queryString, "contents");	
+		String[][] result = sf.query(queryString, "contents");
+		
+		MatrizDeRelevancia mr = new MatrizDeRelevancia();
+		
+		
+		
+		return result;
+		
 	}
 }

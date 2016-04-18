@@ -18,8 +18,8 @@ public class StemAnalyzer extends Analyzer {
 
 		Tokenizer source = new StandardTokenizer(TokenStream.DEFAULT_TOKEN_ATTRIBUTE_FACTORY);
 		
-		boolean stop = false;
-		boolean stem = false;
+		boolean stop = true;
+		boolean stem = true;
 		
 		if(stop){
 			if(stem){

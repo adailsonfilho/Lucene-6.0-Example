@@ -92,7 +92,7 @@ public class SearchFiles {
 			Document d = searcher.doc(docId);
 			int index = i+1;
 			result[i][0] = ""+index;
-			result[i][1] = d.get("path");
+			result[i][1] = d.get("title");
 		}
 		
 		reader.close();
