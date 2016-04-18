@@ -30,6 +30,7 @@ public class MatrizDeRelevancia {
 		    }
 			i++;
 		}
+
 	}
 	
 	public int getCount(int queryId){
@@ -66,7 +67,7 @@ public class MatrizDeRelevancia {
 			if(value ==1 )total_relevants++;
 		}
 		
-		return (double)relevants_cacthed/(double)docsTitles.length;
+		return (double)relevants_cacthed/(double)total_relevants;
 	}
 	
 	public double fmeasure(double coverage, double precision){
@@ -78,6 +79,9 @@ public class MatrizDeRelevancia {
 		StringBuffer prefix = new StringBuffer();
 		StringBuffer id = new StringBuffer();
 		boolean lastWasDigit = false;
+		
+		docTitle = docTitle.replace(".txt", "");
+		
 		for(int i = 0; i < docTitle.length(); i++){
 			
 			char c = docTitle.charAt(i);
@@ -100,6 +104,7 @@ public class MatrizDeRelevancia {
 		}else if(prefix.toString().equalsIgnoreCase("F")){
 			column += 199;
 		}
+	
 		
 		return values[queryId][column] == 1;
 	}

@@ -1,5 +1,6 @@
 package util;
 
+import java.io.File;
 import java.io.IOException;
 
 public class TestsReport {
@@ -40,6 +41,14 @@ public class TestsReport {
 			System.out.println("- Stop: "+stopstem[0]);
 			System.out.println("- Stem: "+stopstem[1]);
 			//indexa
+			
+			try{
+				File indexFile = new File(indexPath);
+				indexFile.delete();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
 			IndexFiles lw = new IndexFiles(indexPath,docsPath, stopstem[0], stopstem[1]);
 			try {
 				

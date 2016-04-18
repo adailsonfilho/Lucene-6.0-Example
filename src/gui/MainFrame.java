@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.print.Doc;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -87,7 +88,7 @@ public class MainFrame extends JFrame {
 			    String filename = tbl_result.getValueAt(row, col).toString();
 			    
 			    try {
-					Desktop.getDesktop().open(new File(filename));
+					Desktop.getDesktop().open(new File("documents/"+filename));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
