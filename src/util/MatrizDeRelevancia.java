@@ -86,9 +86,7 @@ public class MatrizDeRelevancia {
 			
 			char c = docTitle.charAt(i);
 			
-			if(lastWasDigit) break;
-			
-			if(Character.isAlphabetic(c)){
+			if(Character.isAlphabetic(c) && !lastWasDigit){
 				prefix.append(c);
 			}else if(Character.isDigit(c)){
 				id.append(c);
@@ -105,6 +103,9 @@ public class MatrizDeRelevancia {
 			column += 199;
 		}
 	
+//		System.out.println(">> Q: "+queryId);
+//		System.out.println(">> D: "+docTitle);
+//		System.out.println(">> col: "+column);
 		
 		return values[queryId][column] == 1;
 	}

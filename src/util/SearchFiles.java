@@ -45,7 +45,7 @@ public class SearchFiles {
 	int repeat = 0;
 	boolean raw = false;
 	Analyzer analyzer;
-	int hitsPerPage = 300;
+	int hitsPerPage = 100;
 	
 	boolean stop;
 	boolean stem;
@@ -89,9 +89,9 @@ public class SearchFiles {
 
 		ScoreDoc[] hits = doPagingSearch(in, searcher, query, hitsPerPage, raw, queryString == null);
 
-		String[][] result = new String[hits.length][2];
+		String[][] result = new String[hitsPerPage > hits.length ? hits.length :hitsPerPage][2];
 
-		for(int i=0;i<hits.length;++i) 
+		for(int i=0; i < hits.length && i < hitsPerPage;++i) 
 		{
 			int docId = hits[i].doc;
 			Document d = searcher.doc(docId);

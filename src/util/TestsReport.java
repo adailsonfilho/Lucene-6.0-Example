@@ -58,6 +58,8 @@ public class TestsReport {
 				//busca todas as queries
 				int queryId = 0;
 				for(String query :queries){
+					
+					System.out.println("Query digitada: "+query);
 					String[][] result = sf.query(query, "contents");
 					
 					//calcula métricas
@@ -65,7 +67,6 @@ public class TestsReport {
 					double coverage = mr.coverage(getTitles(result),queryId);
 					double fmeasure = mr.fmeasure(coverage, precision);
 					
-					System.out.println("Query: "+query);
 					System.out.println("- Precision: "+precision);
 					System.out.println("- Coverage: "+coverage);
 					System.out.println("- F-Measure: "+fmeasure);
