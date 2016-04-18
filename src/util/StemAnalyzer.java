@@ -13,13 +13,20 @@ import org.apache.lucene.analysis.util.CharArraySet;
 
 public class StemAnalyzer extends Analyzer {
 
+	private boolean stop = true;
+	private boolean stem = true;
+	
+	public StemAnalyzer(boolean stop, boolean stem){
+		this.stop = stop;
+		this.stem = stem;
+	}
+	
 	@Override
 	protected TokenStreamComponents createComponents(String fieldName) {
 
 		Tokenizer source = new StandardTokenizer(TokenStream.DEFAULT_TOKEN_ATTRIBUTE_FACTORY);
 		
-		boolean stop = true;
-		boolean stem = true;
+		
 		
 		if(stop){
 			if(stem){

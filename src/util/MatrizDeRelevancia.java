@@ -8,6 +8,10 @@ import com.sun.javafx.scene.paint.GradientUtils.Parser;
 
 public class MatrizDeRelevancia {
 	
+	public final int Q1_WAR_MOVIES = 0;
+	public final int Q2_IRAQI_REFUGEES = 1;
+	public final int Q3_REFUGEES_IN_USA = 2;
+	
 	int [][] values;
 
 	public MatrizDeRelevancia() throws IOException{
@@ -39,13 +43,44 @@ public class MatrizDeRelevancia {
 		
 	}
 	
-	public boolean checkValue(String docName, int queryId, int value){
+	public double precision(String[] docsTitles, int queryId){
+		//Recuperados e relevantes / recuperados
+		
+		int relevants_cacthed = 0;
+		for(String title : docsTitles){
+			if(isRelevant(title, queryId))relevants_cacthed++;
+		}
+		
+		return (double)relevants_cacthed/(double)docsTitles.length;
+	}
+	
+	public double coverage(String[] docsTitles, int queryId){
+		//Recuperados e relevantes / relevantes
+		int relevants_cacthed = 0;
+		for(String title : docsTitles){
+			if(isRelevant(title, queryId))relevants_cacthed++;
+		}
+		
+		int total_relevants = 0;
+		for(int value : values[queryId]){
+			if(value ==1 )total_relevants++;
+		}
+		
+		return (double)relevants_cacthed/(double)docsTitles.length;
+	}
+	
+	public double fmeasure(double coverage, double precision){
+		return (2*coverage*precision)/(precision + coverage);
+	}
+	
+	
+	public boolean isRelevant(String docTitle, int queryId){
 		StringBuffer prefix = new StringBuffer();
 		StringBuffer id = new StringBuffer();
 		boolean lastWasDigit = false;
-		for(int i = 0; i < docName.length(); i++){
+		for(int i = 0; i < docTitle.length(); i++){
 			
-			char c = docName.charAt(i);
+			char c = docTitle.charAt(i);
 			
 			if(lastWasDigit) break;
 			
@@ -66,8 +101,9 @@ public class MatrizDeRelevancia {
 			column += 199;
 		}
 		
-		return values[queryId][column] == value;
+		return values[queryId][column] == 1;
 	}
+	
 	
 
 }

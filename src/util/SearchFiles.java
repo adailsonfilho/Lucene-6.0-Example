@@ -46,10 +46,15 @@ public class SearchFiles {
 	boolean raw = false;
 	Analyzer analyzer;
 	int hitsPerPage = 300;
+	
+	boolean stop;
+	boolean stem;
 
-	public SearchFiles(String indexPath) throws Exception {
+	public SearchFiles(String indexPath, boolean stop, boolean stem) throws Exception {
 		this.indexPath = indexPath;
-		analyzer = new StemAnalyzer();;
+		this.stop = stop;
+		this.stem = stem;
+		analyzer = new StemAnalyzer(stop, stem);
 
 	}
 

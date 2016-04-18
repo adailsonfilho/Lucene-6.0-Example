@@ -49,9 +49,12 @@ public class LuceneSearch {
 		String indexPath = "index";
 		String docsPath = "documents";
 		
-		IndexFiles lw = new IndexFiles(indexPath,docsPath);
+		boolean stop = true;
+		boolean stem = true;
+		
+		IndexFiles lw = new IndexFiles(indexPath,docsPath,stop, stem);
 		try {
-			sf = new SearchFiles(indexPath);
+			sf = new SearchFiles(indexPath, stop, stem);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,11 +64,7 @@ public class LuceneSearch {
 	
 	public String[][] query(String queryString) throws ParseException, IOException{
 
-		String[][] result = sf.query(queryString, "contents");
-		
-		MatrizDeRelevancia mr = new MatrizDeRelevancia();
-		
-		
+		String[][] result = sf.query(queryString, "contents");		
 		
 		return result;
 		

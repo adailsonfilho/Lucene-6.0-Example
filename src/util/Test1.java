@@ -11,9 +11,12 @@ public class Test1 {
 		String indexPath = "index";
 		String docsPath = "documents";
 		
-		IndexFiles lw = new IndexFiles(indexPath,docsPath);
+		boolean stop = true;
+		boolean stem = true;
+		
+		IndexFiles lw = new IndexFiles(indexPath,docsPath, stop, stem);
 		try {
-			SearchFiles sf = new SearchFiles(indexPath);
+			SearchFiles sf = new SearchFiles(indexPath, stop, stem);
 			sf.query("Movies in Iraq", "contents");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
