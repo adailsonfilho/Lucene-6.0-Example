@@ -45,7 +45,7 @@ public class SearchFiles {
 	int repeat = 0;
 	boolean raw = false;
 	Analyzer analyzer;
-	int hitsPerPage = 100;
+	int hitsPerPage = 300;
 	
 	boolean stop;
 	boolean stem;

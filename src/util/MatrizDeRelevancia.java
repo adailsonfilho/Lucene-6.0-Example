@@ -8,9 +8,9 @@ import com.sun.javafx.scene.paint.GradientUtils.Parser;
 
 public class MatrizDeRelevancia {
 	
-	public final int Q1_WAR_MOVIES = 0;
-	public final int Q2_IRAQI_REFUGEES = 1;
-	public final int Q3_REFUGEES_IN_USA = 2;
+	public static final int Q1_WAR_MOVIES = 0;
+	public static final int Q2_IRAQI_REFUGEES = 1;
+	public static final int Q3_REFUGEES_IN_USA = 2;
 	
 	int [][] values;
 
@@ -62,10 +62,7 @@ public class MatrizDeRelevancia {
 			if(isRelevant(title, queryId))relevants_cacthed++;
 		}
 		
-		int total_relevants = 0;
-		for(int value : values[queryId]){
-			if(value ==1 )total_relevants++;
-		}
+		int total_relevants = getCount(queryId);
 		
 		return (double)relevants_cacthed/(double)total_relevants;
 	}
